@@ -3,10 +3,19 @@ html(lang="en")
 	head
 		include templates/head
 	body
-		header
-			include templates/header
-		main
-			include templates/content
-		footer
-			include templates/footer
+		.tictactoe
+			.row.top
+				.cell#0
+				.cell#1
+				.cell#2
+			.row.middle
+				.cell#3
+				.cell#4
+				.cell#5
+			.row.bottom
+				.cell#6
+				.cell#7
+				.cell#8
+		.msg-end-game
+		button Replay
 		include templates/scripts

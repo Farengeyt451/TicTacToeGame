@@ -1,12 +1,6 @@
 // Import normalize.css
 @import "node_modules/normalize-scss/sass/normalize/_import-now.scss";
 
-// Import fonts
-@import "partials/_fonts.scss";
-
-// Import variables
-@import "partials/_variables.scss";
-
 // Import style parts
 @import "partials/_general.scss";
-@import "partials/_media-queries.scss";
+@import "partials/_tictactoe.scss";
