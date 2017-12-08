@@ -6,10 +6,14 @@
 }
 
 .cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100px;
 	height: 100px;
 	background-color: #BADA55;
 	border: 1px solid #777;
+	font-size: 40px;
 	&:hover, &:focus {
 		cursor: pointer;
 	}
