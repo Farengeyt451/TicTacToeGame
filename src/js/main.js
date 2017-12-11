@@ -28,7 +28,10 @@ function startGame() {
 
 function turnClick(e) {
 	let idSquare = e.target.id;
-	turn(idSquare, humanPlayer);
+	if (typeof gameBoard[idSquare] === "number") {
+		turn(idSquare, humanPlayer);
+		if (!checkTie()) turn(bestSpot(), aiPalyer);
+	}
 }
 
 function turn(idSquare, player) {
@@ -41,15 +44,8 @@ function turn(idSquare, player) {
 }
 
 function checkWin(board, player) {
-	console.log(board,player);
-	let plays = board.reduce((acc, el, index) =>
-		(el === player) ? acc.concat(index) : acc, []);
-	// let plays = board.reduce((a, el, i) => {
-	// 	if (el === player) {
-	// 		return a.concat(i);
-	// 	}
-	// 	return a;
-	// }, []);
+	let plays = board.reduce((a, e, i) =>
+		(e === player) ? a.concat(i) : a, []);
 	let gameWon = null;
 	for (let [index, win] of winCombos.entries()) {
 		if (win.every(elem => plays.indexOf(elem) > -1)) {
@@ -66,6 +62,31 @@ function gameOver(gameWon) {
 			(gameWon.player === humanPlayer) ? "blue" : "red";
 	}
 	cells.forEach(cell => cell.removeEventListener("click", turnClick));
+	declareWinner((gameWon.player === humanPlayer) ? "You win" : "You lose");
+}
+
+function emptySquares() {
+	return gameBoard.filter(elem => typeof elem === "number");
+}
+
+function bestSpot() {
+	return emptySquares()[0];
+}
+
+function declareWinner(who) {
+	alert(who);
+}
+
+function checkTie() {
+	if (emptySquares().length == 0) {
+		for (var i = 0; i < cells.length; i++) {
+			cells[i].style.backgroundColor = "green";
+			cells[i].removeEventListener('click', turnClick, false);
+		}
+		declareWinner("Tie Game!")
+		return true;
+	}
+	return false;
 }
 
 replayBtn.addEventListener("click", startGame);
