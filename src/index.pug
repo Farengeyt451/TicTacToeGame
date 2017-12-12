@@ -3,6 +3,8 @@ html(lang="en")
 	head
 		include templates/head
 	body
+		.result
+			p#result
 		.tictactoe
 			.row.top
 				.cell#0
@@ -20,5 +22,7 @@ html(lang="en")
 		.choice
 			span#ex X
 			span#zero O
-		button Replay
+		.row
+			button#replay Replay
+			button#reset Reset All
 		include templates/scripts
