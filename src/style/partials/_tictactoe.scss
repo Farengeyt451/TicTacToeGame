@@ -56,6 +56,27 @@
 	}
 }
 
+.choice {
+	// position: absolute;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 200px;
+	width: 400px;
+	background-color: #5EB9FF;
+	border-radius: 10px;
+	font-size: 70px;
+	span {
+		padding: 20px 40px;
+		border-radius: 10px;
+		transition: all 0.3s;
+		&:focus, &:hover {
+			cursor: pointer;
+			background-color: #4A93CA;
+		}
+	}
+}
+
 button {
 	margin-top: 40px;
 	width: 100px;
