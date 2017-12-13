@@ -1,7 +1,6 @@
 let gameBoard;
 let humanPlayer;
 let aiPlayer;
-let running = false;
 
 const winCombos = [
 	[0, 1, 2],
