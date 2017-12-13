@@ -55,25 +55,28 @@ function startGame() {
 }
 
 function turnClick(e) {
-	console.log("click");
-	if (running) {
-		cells.forEach(cell => {
-			cell.removeEventListener("click", turnClick);
-		});
-	}
 	let idSquare = e.target.id;
 	if (typeof gameBoard[idSquare] === "number") {
 		turn(idSquare, humanPlayer);
 		if (!checkWin(gameBoard, humanPlayer) && !checkTie()) {
-			running = true;
-			setTimeout(function() {
-				turn(bestSpot(), aiPlayer);
-				cells.forEach(cell => {
-					cell.addEventListener("click", turnClick);
-				});
-			}, 1000);
+			turn(bestSpot(), aiPlayer);
 		}
 	}
+}
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
 }
 
 function turn(idSquare, player) {
